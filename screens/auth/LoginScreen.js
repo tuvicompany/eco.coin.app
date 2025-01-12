@@ -5,7 +5,6 @@ import {
   TextInput,
   TouchableOpacity,
   Animated,
-  StyleSheet,
 } from "react-native";
 import { authStyles } from "../../styles/authStyles";
 
@@ -48,7 +47,7 @@ export default function LoginScreen({ navigation }) {
           secureTextEntry={true}
         />
 
-        <View style={authStyles.actionContainer}>
+        <View style={authStyles.actionRightContainer}>
           <TouchableOpacity onPress={() => alert("Forgot Password")}>
             <Text style={authStyles.link}>Forgot Password?</Text>
           </TouchableOpacity>

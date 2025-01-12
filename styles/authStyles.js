@@ -17,19 +17,20 @@ export const authStyles = StyleSheet.create({
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     elevation: 10,
+    shadowColor: "#000",
   },
   title: {
     color: "#248A3D",
     fontSize: 24,
     fontWeight: "bold",
-    textAlign: "start",
+    textAlign: "left",
     marginBottom: 10,
   },
   description: {
     color: "#000000",
     fontSize: 14,
     fontWeight: "regular",
-    textAlign: "start",
+    textAlign: "left",
     marginBottom: 30,
   },
   input: {
@@ -51,10 +52,19 @@ export const authStyles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
   },
-  actionContainer: {
+  actionLeftContainer: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    marginBottom: 40,
+    gap: 10,
+    alignItems: "center",
+  },
+  actionRightContainer: {
     flexDirection: "row",
     justifyContent: "flex-end",
     marginBottom: 40,
+    gap: 10,
+    alignItems: "center",
   },
   link: {
     color: "#248A3D",
@@ -89,5 +99,23 @@ export const authStyles = StyleSheet.create({
     fontSize: 14,
     textAlign: "center",
     textDecorationLine: "underline",
+    marginTop: 10,
+  },
+  checkboxContainer: {
+    width: 16,
+    height: 16,
+    borderWidth: 2,
+    borderColor: "#248A3D",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: "100%",
+  },
+  checkboxButton: {
+    width: 12,
+    height: 12,
+    backgroundColor: "#248A3D",
+    borderRadius: "100%",
+    borderWidth: 2,
+    borderColor: "#fff"
   },
 });
