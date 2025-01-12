@@ -24,7 +24,6 @@ export const authStyles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     textAlign: "left",
-    marginBottom: 10,
   },
   description: {
     color: "#000000",
@@ -32,6 +31,7 @@ export const authStyles = StyleSheet.create({
     fontWeight: "regular",
     textAlign: "left",
     marginBottom: 30,
+    marginTop: 10
   },
   input: {
     height: 50,
@@ -62,6 +62,15 @@ export const authStyles = StyleSheet.create({
   actionRightContainer: {
     flexDirection: "row",
     justifyContent: "flex-end",
+    marginBottom: 40,
+    gap: 10,
+    alignItems: "center",
+  },
+  actionWrapContainer: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    flexWrap: "wrap",
+    width: "100%",
     marginBottom: 40,
     gap: 10,
     alignItems: "center",
@@ -116,6 +125,36 @@ export const authStyles = StyleSheet.create({
     backgroundColor: "#248A3D",
     borderRadius: "100%",
     borderWidth: 2,
-    borderColor: "#fff"
+    borderColor: "#fff",
+  },
+  validButton: {
+    backgroundColor: "#F5F5F5",
+    paddingVertical: 6,
+    paddingHorizontal: 10,
+    borderRadius: 25,
+    alignItems: "center",
+  },
+  validButtonText: {
+    fontSize: 10,
+    color: "#555",
+  },
+  otpContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 20,
+  },
+  otpInput: {
+    width: 40,
+    height: 40,
+    borderWidth: 1,
+    borderColor: "#aaa",
+    borderRadius: 5,
+    textAlign: "center",
+    fontSize: 18,
+  },
+  timerText: {
+    fontSize: 14,
+    color: "#aaa",
+    textAlign: "right",
   },
 });

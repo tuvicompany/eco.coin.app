@@ -9,7 +9,7 @@ const Tab = createBottomTabNavigator();
 
 export default function MainTabs() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator initialRouteName="News">
       <Tab.Screen
         options={{ headerShown: false }}
         name="News"

@@ -7,8 +7,10 @@ import {
   Animated,
 } from "react-native";
 import { authStyles } from "../../styles/authStyles";
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function LoginScreen({ navigation }) {
+  const { setIsLoggedIn } = useAuth();
   const slideAnim = useRef(new Animated.Value(200)).current;
 
   useEffect(() => {
@@ -53,7 +55,10 @@ export default function LoginScreen({ navigation }) {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity style={authStyles.submitButton}>
+        <TouchableOpacity
+          style={authStyles.submitButton}
+          onPress={() => setIsLoggedIn(true)}
+        >
           <Text style={authStyles.submitText}>Login</Text>
         </TouchableOpacity>
 

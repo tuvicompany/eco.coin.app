@@ -69,7 +69,10 @@ export default function RegisterScreen({ navigation }) {
           </Text>
         </View>
 
-        <TouchableOpacity style={authStyles.submitButton}>
+        <TouchableOpacity
+          style={authStyles.submitButton}
+          onPress={() => navigation.navigate("CreatePassword")}
+        >
           <Text style={authStyles.submitText}>Register</Text>
         </TouchableOpacity>
 
