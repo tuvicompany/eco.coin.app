@@ -13,8 +13,8 @@ export default function MainTabs() {
     <Tab.Navigator
       initialRouteName="News"
       screenOptions={({ route }) => ({
-        tabBarStyle: { backgroundColor: "#248A3D" },
-        tabBarActiveTintColor: "#FFFFFF",
+        tabBarStyle: { backgroundColor: "#FFFFFF" },
+        tabBarActiveTintColor: "#248A3D",
         tabBarInactiveTintColor: "#C0C0C0",
         headerShown: false,
         tabBarIcon: ({ color, size }) => {
