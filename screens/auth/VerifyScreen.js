@@ -11,7 +11,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { useAuth } from "../../contexts/AuthContext";
 
 export default function OtpScreen({ navigation }) {
-  const { setIsLoggedIn } = useAuth();
+  const { login } = useAuth();
   const slideAnim = useRef(new Animated.Value(200)).current;
   const [otp, setOtp] = useState(Array(6).fill(""));
   const inputs = useRef([]);
@@ -49,7 +49,7 @@ export default function OtpScreen({ navigation }) {
         inputs.current[index + 1]?.focus();
       } else {
         inputs.current[index]?.blur();
-        setIsLoggedIn(true);
+        login();
       }
     } else if (text === "") {
       const newOtp = [...otp];
@@ -63,7 +63,7 @@ export default function OtpScreen({ navigation }) {
 
   const handleNext = () => {
     if (otp.every((digit) => digit !== "")) {
-      setIsLoggedIn(true);
+      login();
     } else {
       alert("Please fill in all OTP fields.");
     }

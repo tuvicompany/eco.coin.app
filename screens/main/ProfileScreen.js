@@ -9,9 +9,12 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function ProfileScreen() {
   const navigation = useNavigation();
+
+  const { logout } = useAuth();
 
   return (
     <ScrollView style={styles.container}>
@@ -80,19 +83,13 @@ export default function ProfileScreen() {
         >
           <Text style={styles.actionText}>Dashboard</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.actionButton}
-          onPress={() => navigation.navigate("Feedback")}
-        >
+        <TouchableOpacity style={[styles.actionButton, styles.inactive]}>
           <Text style={styles.actionText}>Feedback</Text>
         </TouchableOpacity>
         <TouchableOpacity style={[styles.actionButton, styles.inactive]}>
           <Text style={styles.actionText}>Language</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.actionButton}
-          onPress={() => navigation.navigate("ChangePassword")}
-        >
+        <TouchableOpacity style={[styles.actionButton, styles.inactive]}>
           <Text style={styles.actionText}>Change Password</Text>
         </TouchableOpacity>
         <TouchableOpacity style={[styles.actionButton, styles.inactive]}>
@@ -113,10 +110,7 @@ export default function ProfileScreen() {
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity
-        style={styles.logoutButton}
-        onPress={() => navigation.navigate("Login")}
-      >
+      <TouchableOpacity style={styles.logoutButton} onPress={logout}>
         <Text style={styles.logoutText}>Logout</Text>
       </TouchableOpacity>
 

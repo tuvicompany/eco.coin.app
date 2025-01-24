@@ -8,9 +8,11 @@ import {
 } from "react-native";
 import { authStyles } from "../../styles/authStyles";
 import { useAuth } from "../../contexts/AuthContext";
+import Icon from "react-native-vector-icons/FontAwesome";
+import { fetchUserInfo, getGoogleLoginUrl } from "../../services/authService";
 
 export default function LoginScreen({ navigation }) {
-  const { setIsLoggedIn } = useAuth();
+  const { login } = useAuth();
   const slideAnim = useRef(new Animated.Value(200)).current;
 
   useEffect(() => {
@@ -20,6 +22,26 @@ export default function LoginScreen({ navigation }) {
       useNativeDriver: true,
     }).start();
   }, [slideAnim]);
+
+  const handleGoogleLogin = async () => {
+    try {
+      const { url } = await getGoogleLoginUrl();
+
+      Linking.openURL(url);
+    } catch (error) {
+      Alert.alert('Error', 'Failed to initiate Google login.');
+    }
+  };
+
+  const handleCallback = async (code) => {
+    try {
+      const userInfo = await fetchUserInfo(code);
+      Alert.alert('Login Successful', `Welcome ${userInfo.name}`);
+      login();
+    } catch (error) {
+      Alert.alert('Error', 'Failed to fetch user information.');
+    }
+  };
 
   return (
     <View style={authStyles.container}>
@@ -55,23 +77,26 @@ export default function LoginScreen({ navigation }) {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity
-          style={authStyles.submitButton}
-          onPress={() => setIsLoggedIn(true)}
-        >
+        <TouchableOpacity style={authStyles.submitButton} onPress={login}>
           <Text style={authStyles.submitText}>Login</Text>
         </TouchableOpacity>
 
         <Text style={authStyles.descText}> or login with </Text>
 
         <View style={authStyles.socialLoginContainer}>
-          <TouchableOpacity style={authStyles.socialButton}>
+          <TouchableOpacity
+            style={authStyles.socialButton}
+            onPress={handleGoogleLogin}
+          >
+            <Icon name="google" size={20} color="#DB4437" />
             <Text style={authStyles.socialButtonText}>Google</Text>
           </TouchableOpacity>
           <TouchableOpacity style={authStyles.socialButton}>
+            <Icon name="facebook" size={20} color="#4267B2" />
             <Text style={authStyles.socialButtonText}>Facebook</Text>
           </TouchableOpacity>
           <TouchableOpacity style={authStyles.socialButton}>
+            <Icon name="apple" size={20} color="#000000" />
             <Text style={authStyles.socialButtonText}>iCloud</Text>
           </TouchableOpacity>
         </View>

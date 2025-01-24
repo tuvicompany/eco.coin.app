@@ -7,6 +7,7 @@ import {
   Animated,
 } from "react-native";
 import { authStyles } from "../../styles/authStyles";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 export default function RegisterScreen({ navigation }) {
   const slideAnim = useRef(new Animated.Value(200)).current;
@@ -80,12 +81,15 @@ export default function RegisterScreen({ navigation }) {
 
         <View style={authStyles.socialLoginContainer}>
           <TouchableOpacity style={authStyles.socialButton}>
+            <Icon name="google" size={20} color="#DB4437" />
             <Text style={authStyles.socialButtonText}>Google</Text>
           </TouchableOpacity>
           <TouchableOpacity style={authStyles.socialButton}>
+            <Icon name="facebook" size={20} color="#4267B2" />
             <Text style={authStyles.socialButtonText}>Facebook</Text>
           </TouchableOpacity>
           <TouchableOpacity style={authStyles.socialButton}>
+            <Icon name="apple" size={20} color="#000000" />
             <Text style={authStyles.socialButtonText}>iCloud</Text>
           </TouchableOpacity>
         </View>

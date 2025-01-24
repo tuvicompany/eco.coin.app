@@ -98,6 +98,7 @@ export const authStyles = StyleSheet.create({
     marginHorizontal: 5,
     borderRadius: 5,
     alignItems: "center",
+    gap: 3
   },
   socialButtonText: {
     fontSize: 14,
