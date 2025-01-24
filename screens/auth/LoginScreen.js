@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -9,11 +9,14 @@ import {
 import { authStyles } from "../../styles/authStyles";
 import { useAuth } from "../../contexts/AuthContext";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { fetchUserInfo, getGoogleLoginUrl } from "../../services/authService";
+import { getGoogleLoginUrl } from "../../services/authService";
+import { WebView } from 'react-native-webview';
 
 export default function LoginScreen({ navigation }) {
   const { login } = useAuth();
   const slideAnim = useRef(new Animated.Value(200)).current;
+
+  const [htmlContent, setHtmlContent] = useState(null);
 
   useEffect(() => {
     Animated.timing(slideAnim, {
@@ -25,23 +28,23 @@ export default function LoginScreen({ navigation }) {
 
   const handleGoogleLogin = async () => {
     try {
-      const { url } = await getGoogleLoginUrl();
+      const response = await getGoogleLoginUrl();
 
-      Linking.openURL(url);
+      setHtmlContent(response);
     } catch (error) {
-      Alert.alert('Error', 'Failed to initiate Google login.');
+      Alert.alert("Error", "Failed to initiate Google login.");
     }
   };
 
-  const handleCallback = async (code) => {
-    try {
-      const userInfo = await fetchUserInfo(code);
-      Alert.alert('Login Successful', `Welcome ${userInfo.name}`);
-      login();
-    } catch (error) {
-      Alert.alert('Error', 'Failed to fetch user information.');
-    }
-  };
+  if (!!htmlContent) {
+    return (
+      <WebView
+        originWhitelist={["*"]}
+        source={{ html: htmlContent }}
+        style={{ flex: 1 }}
+      />
+    );
+  }
 
   return (
     <View style={authStyles.container}>
